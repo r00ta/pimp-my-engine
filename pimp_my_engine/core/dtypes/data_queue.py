@@ -7,29 +7,17 @@ class DataQueue:
         self.queue = []
 
     def add(self, data):
-        try:
-            self.lock.acquire()
+        with self.lock:
             self.queue.append(data)
-        finally:
-            self.lock.release()
 
     def pop(self, idx = -1):
-        try:
-            self.lock.acquire()
+        with self.lock:
             return self.queue.pop(idx)
-        finally:
-            self.lock.release()
 
     def erase(self):
-        try:
-            self.lock.acquire()
+        with self.lock:
             self.queue = []
-        finally:
-            self.lock.release()
 
     def is_empty(self):
-        try:
-            self.lock.acquire()
+        with self.lock:
             return not bool(self.queue)
-        finally:
-            self.lock.release()

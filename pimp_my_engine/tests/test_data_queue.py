@@ -26,3 +26,10 @@ class TestDataQueue(object):
         dq.add(element)
         dq.erase()
         assert dq.is_empty() == True
+
+    def test_pop_from_emptylist(self):
+        with pytest.raises(IndexError):
+            dq = DataQueue()
+            dq.pop()
+
+
