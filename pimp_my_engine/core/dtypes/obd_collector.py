@@ -6,7 +6,7 @@ class ObdCollector:
         self.commands_queues = {}
         self.lock = Lock()
 
-    def update(command, value):
+    def update(self, command, value):
         with self.lock:
             if command not in self.commands_queues.keys():
                 self.commands_queues.update({command: CircularQueue(startvalue = value, size = 5)})
